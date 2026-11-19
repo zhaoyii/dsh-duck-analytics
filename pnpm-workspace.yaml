@@ -1,7 +1,7 @@
 # pnpm project settings.
 #
 # Declared here rather than in a global pnpm config so a clone behaves the same
-# on any machine. No dependency needs an install script: `@duckdb/node-api`
-# ships prebuilt binaries and ECharts is pure JavaScript, so the allowlist is
-# deliberately empty.
-onlyBuiltDependencies: []
+# on any machine. pnpm 11 blocks dependency build scripts unless a project allows
+# them; nothing here needs one — `@duckdb/node-api` ships prebuilt binaries and
+# ECharts is pure JavaScript — so the map is deliberately empty.
+allowBuilds: {}
