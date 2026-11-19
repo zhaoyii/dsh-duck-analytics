@@ -138,8 +138,8 @@ C8 与像素级外观仍需在浏览器里确认一次：本组测试证明「Ho
 
 ```sh
 cd dsh-duck-analytics
-npm run build     # 重新生成 lib/client.js（改 src/client/index.js 后必须执行）
-npm test
+pnpm build     # 重新生成 lib/client.js（改 src/client/index.js 后必须执行）
+pnpm test
 ```
 
 启动（仓库根目录）：
@@ -148,7 +148,7 @@ npm test
 pnpm dsh web --patch ./dsh-duck-analytics/cordis.yml
 ```
 
-改动客户端源后：先 `npm run build`，再刷新页面。浏览器半由 Client Modules 按 bundle 的文件元数据（mtime/ctime/size）判版本，重建即换版本；只改 Host 半则只需重载插件。
+改动客户端源后：先 `pnpm build`，再刷新页面。浏览器半由 Client Modules 按 bundle 的文件元数据（mtime/ctime/size）判版本，重建即换版本；只改 Host 半则只需重载插件。
 
 ## 已知边界
 

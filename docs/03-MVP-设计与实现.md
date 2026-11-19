@@ -165,8 +165,8 @@ month    sales
 ## 测试
 
 ```sh
-cd dsh-duck-analytics && npm test        # 单进程跑完全部测试文件
-cd dsh-duck-analytics && npm run typecheck
+cd dsh-duck-analytics && pnpm test        # 单进程跑完全部测试文件
+cd dsh-duck-analytics && pnpm typecheck
 ```
 
 77 个用例：`sql-guard` 12、`render` 12、`data-files` 14、`session-database` 13、`chart-meta`（合并于 client-bundle 与 tools）、`client-bundle` 10、`client-row` 1、`tools` 16。真实 DuckDB，不用 mock；临时目录建在 `test/.tmp-*` 并在 `after` 里清理。

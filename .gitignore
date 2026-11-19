@@ -1,6 +1,7 @@
-# Installed dependencies and npm cache used for offline installs.
+# Installed dependencies and the pnpm store when it is kept in-tree.
 node_modules/
-.npm-cache/
+.pnpm-store/
+.pnpm-debug.log*
 
 # Test scratch directories created and removed by the suite; ignore leftovers.
 test/.tmp-*/

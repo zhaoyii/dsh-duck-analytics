@@ -30,8 +30,8 @@ dsh plugin --profile demo add ./dsh-duck-analytics
 **本地开发**（不安装，直接加载 checkout）：
 
 ```sh
-npm install
-npm run build     # 编译 Host 半到 lib/*.js，并生成 lib/client.js
+pnpm install
+pnpm build     # 编译 Host 半到 lib/*.js，并生成 lib/client.js
 # 在 harness checkout 根目录：
 pnpm dsh web --patch ./dsh-duck-analytics/cordis.yml
 ```
@@ -45,13 +45,15 @@ pnpm dsh web --patch ./dsh-duck-analytics/cordis.yml
 | `lib/client.js` | 浏览器半；`package.json` 的 `exports["./client"]` 指向它 | 宿主识别到 `dsh.client` 却读不到 bundle，**客户端行激活失败**，图不出现 |
 | `lib/index.js` + 其余 `lib/*.js` | Host 半；patch 行的包名解析到这里 | 插件无法加载（普通 `dsh` 进程不转译 TypeScript） |
 
-git 安装不会运行本仓库的构建（也没有可靠的 `prepare` 授权路径），所以产物入库是这里的有意取舍：`git add` 之后 `dsh plugin add github:...` 直接可用。改过 `src/` 或 `src/client/index.js` 后请重新 `npm run build` 并提交。
+git 安装不会运行本仓库的构建（也没有可靠的 `prepare` 授权路径），所以产物入库是这里的有意取舍：`git add` 之后 `dsh plugin add github:...` 直接可用。改过 `src/` 或 `src/client/index.js` 后请重新 `pnpm build` 并提交。
 
 ## 自测
 
 ```sh
-npm test        # 86 用例（1 个因宿主不允许建符号链接而跳过）
-npm run typecheck
+pnpm test        # 86 用例（1 个因宿主不允许建符号链接而跳过）
+pnpm typecheck
 ```
 
 测试直接跑 TypeScript 源码（Node 类型擦除），DSH 包来自 `devDependencies`，因此不需要 harness checkout。
+
+依赖由 pnpm 管理（`pnpm-lock.yaml`）；`packageManager` 固定到生成锁文件的 pnpm 版本。
