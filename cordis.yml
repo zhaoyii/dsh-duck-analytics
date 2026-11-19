@@ -1,0 +1,22 @@
+# Local development overlay: loads THIS checkout directly, without installing it
+# into a profile. Run `npm run build` first — the row points at the built
+# JavaScript, because a plain `dsh` process does not transpile TypeScript.
+#
+#   pnpm dsh web --patch ./dsh-duck-analytics/cordis.yml        (from the harness checkout)
+#
+# For a real install into a profile, use the bundle instead (cordis.patch.yml):
+#   dsh plugin --profile <name> add github:zhaoyii/dsh-duck-analytics
+#
+# `dataRoot` is absolute here because this overlay is machine-local; it is the
+# one directory the analytics tools may read model-supplied paths from.
+- insert:
+    - id: duckdb-analytics
+      name: 'C:\Users\admin\Desktop\scratch-test\dsh-duck-analytics\lib\index.js'
+      config:
+        dataRoot: 'C:\Users\admin\Desktop\scratch-test\dsh-duck-analytics\data'
+        maxFileBytes: 33554432
+        maxResultRows: 100
+        queryTimeoutMs: 15000
+        maxMemory: 512MB
+        threads: 2
+        lockConfiguration: true

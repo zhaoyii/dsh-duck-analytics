@@ -1,0 +1,11 @@
+# Installed dependencies and npm cache used for offline installs.
+node_modules/
+.npm-cache/
+
+# Test scratch directories created and removed by the suite; ignore leftovers.
+test/.tmp-*/
+
+# Local data drops: the analytics data directory is deployment-specific, and the
+# sample fixture in data/ is tracked on purpose.
+data/*
+!data/sales.csv

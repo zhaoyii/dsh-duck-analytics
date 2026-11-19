@@ -1,0 +1,26 @@
+# Bundle layer for this plugin.
+#
+# A profile installs it with:
+#   dsh plugin --profile <name> add github:zhaoyii/dsh-duck-analytics
+#   dsh plugin --profile <name> add ./dsh-duck-analytics        # local checkout
+#
+# Rows reference the package NAME, not a source path, so Node resolves the
+# installed copy.
+#
+# `dataRoot` is where model-supplied relative paths resolve, and it is the only
+# directory the analytics tools may read. It is relative here (resolved against
+# the process working directory) so a fresh install starts predictably; point it
+# at your data by overriding this row's `config` in your profile's
+# cordis.patch.yml (same `id`), or set an absolute path below before installing.
+# The plugin fails loudly when the directory does not exist.
+- insert:
+    - id: duckdb-analytics
+      name: dsh-duck-analytics
+      config:
+        dataRoot: ./analytics-data
+        maxFileBytes: 33554432
+        maxResultRows: 100
+        queryTimeoutMs: 15000
+        maxMemory: 512MB
+        threads: 2
+        lockConfiguration: true
